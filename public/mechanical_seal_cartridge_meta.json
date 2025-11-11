@@ -1,0 +1,23 @@
+{
+  "dimensions": {
+    "flangeOD": 140,
+    "flangeThickness": 12,
+    "cartridgeDepth": 80,
+    "boreID": 50
+  },
+  "boltPattern": {
+    "bcd": 160,
+    "holes": 8,
+    "holeDia": 18
+  },
+  "recommendedShaftDiameter": 50,
+  "materials": {
+    "cartridge_body": "ss316",
+    "seal_faces": [
+      "ceramic",
+      "carbon"
+    ],
+    "springs_fasteners": "steel",
+    "o_rings": "elastomer"
+  }
+}
