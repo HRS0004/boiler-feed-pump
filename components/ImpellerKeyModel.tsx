@@ -4,9 +4,10 @@ import * as THREE from 'three';
 
 interface ImpellerKeyModelProps {
   wireframe?: boolean;
+  index?: number; // 1 to 8 for ImpellerKey_1 to 8, default 1
 }
 
-export default function ImpellerKeyModel({ wireframe = false }: ImpellerKeyModelProps) {
+export default function ImpellerKeyModel({ wireframe = false, index = 1 }: ImpellerKeyModelProps) {
   const groupRef = useRef<THREE.Group>(null);
 
   // Materials: Hardened stainless steel or alloy steel (AISI 4140), brushed or matte metallic gray
@@ -24,7 +25,7 @@ export default function ImpellerKeyModel({ wireframe = false }: ImpellerKeyModel
   const chamfer = 0.03; // ~0.3mm chamfer
 
   return (
-    <group ref={groupRef} name="impeller_key_body">
+    <group ref={groupRef} name={`ImpellerKey_${index}`}>
       {/* Main rectangular key body with chamfers approximated by scaling */}
       <mesh material={material} name="impeller_key_body">
         <boxGeometry args={[length, height, width]} />

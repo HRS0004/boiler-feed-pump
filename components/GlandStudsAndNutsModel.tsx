@@ -5,7 +5,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 export default function GlandStudsAndNutsModel() {
-  const { scene } = useGLTF('/gland_studs_and_nuts.gltf');
+  const { scene } = useGLTF('/nuts_and_bolts_gltf/scene.gltf');
 
   useEffect(() => {
     scene.scale.set(1, 1, 1);

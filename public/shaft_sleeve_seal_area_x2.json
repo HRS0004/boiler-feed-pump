@@ -1,0 +1,169 @@
+{
+  "name": "ShaftSleeveSealAreaX2",
+  "children": [
+    {
+      "name": "ShaftSleeve_1",
+      "geometry": {
+        "type": "LatheGeometry",
+        "parameters": {
+          "points": [
+            {
+              "x": 26,
+              "y": 0
+            },
+            {
+              "x": 29,
+              "y": 0
+            },
+            {
+              "x": 30,
+              "y": 1
+            },
+            {
+              "x": 30,
+              "y": 69
+            },
+            {
+              "x": 29,
+              "y": 69
+            },
+            {
+              "x": 26,
+              "y": 69
+            },
+            {
+              "x": 25,
+              "y": 70
+            },
+            {
+              "x": 25,
+              "y": 1
+            },
+            {
+              "x": 26,
+              "y": 1
+            },
+            {
+              "x": 26,
+              "y": 0
+            }
+          ],
+          "segments": 64,
+          "phiStart": 0,
+          "phiLength": 6.283185307179586
+        }
+      },
+      "material": {
+        "color": 13421772,
+        "metalness": 0.9,
+        "roughness": 0.2
+      },
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        1.5707963267948966,
+        "XYZ"
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "ShaftSleeve_2",
+      "geometry": {
+        "type": "LatheGeometry",
+        "parameters": {
+          "points": [
+            {
+              "x": 26,
+              "y": 0
+            },
+            {
+              "x": 29,
+              "y": 0
+            },
+            {
+              "x": 30,
+              "y": 1
+            },
+            {
+              "x": 30,
+              "y": 69
+            },
+            {
+              "x": 29,
+              "y": 69
+            },
+            {
+              "x": 26,
+              "y": 69
+            },
+            {
+              "x": 25,
+              "y": 70
+            },
+            {
+              "x": 25,
+              "y": 1
+            },
+            {
+              "x": 26,
+              "y": 1
+            },
+            {
+              "x": 26,
+              "y": 0
+            }
+          ],
+          "segments": 64,
+          "phiStart": 0,
+          "phiLength": 6.283185307179586
+        }
+      },
+      "material": {
+        "color": 13421772,
+        "metalness": 0.9,
+        "roughness": 0.2
+      },
+      "position": [
+        120,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        1.5707963267948963,
+        "XYZ"
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "position": [
+    0,
+    0,
+    0
+  ],
+  "rotation": [
+    0,
+    0,
+    0,
+    "XYZ"
+  ],
+  "scale": [
+    1,
+    1,
+    1
+  ]
+}

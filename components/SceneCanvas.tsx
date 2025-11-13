@@ -13,9 +13,22 @@ import BalancingDrumBushModel from './BalancingDrumBushModel';
 import LubeOilSkidModel from './LubeOilSkidModel';
 import BaseplateSkidModel from './BaseplateSkidModel';
 import { MechanicalSealCartridgeModel } from './MechanicalSealCartridgeModel';
+import PumpShaftModel from './PumpShaftModel';
+import ShaftSleeveModel from './ShaftSleeveModel';
+import Group2InnerCartridgeModel from './Group2InnerCartridgeModel';
+import DiffuserModel from './DiffuserModel';
+import Impeller1stStageModel from './Impeller1stStageModel';
+import ImpellerNStageModel from './ImpellerNStageModel';
+import SuctionGuideModel from './SuctionGuideModel';
+import StageCasingModel from './StageCasingModel';
+import WearRingImpellerModel from './WearRingImpellerModel';
+import WearRingCasingModel from './WearRingCasingModel';
+import ShaftSleeveInterstageModel from './ShaftSleeveInterstageModel';
+import ShaftSleeveSealModel from './ShaftSleeveSealModel';
+import GlandStudsAndNutsModel from './GlandStudsAndNutsModel';
 
 export default function SceneCanvas() {
-  const [model, setModel] = useState<'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal'>('skid');
+  const [model, setModel] = useState<'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'stagecasing' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland'>('group2');
   const [wireframe, setWireframe] = useState(false);
 
   return (
@@ -26,7 +39,7 @@ export default function SceneCanvas() {
           <label className="text-white mr-2">Model:</label>
           <select
             value={model}
-            onChange={(e) => setModel(e.target.value as 'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal')}
+            onChange={(e) => setModel(e.target.value as 'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'stagecasing' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland')}
             className="bg-gray-700 text-white"
           >
             <option value="nuts">Nuts and Bolts</option>
@@ -40,6 +53,19 @@ export default function SceneCanvas() {
             <option value="skid">Lube Oil Skid</option>
             <option value="baseplate">Baseplate Skid</option>
             <option value="seal">Mechanical Seal Cartridge</option>
+            <option value="shaft">Pump Shaft</option>
+            <option value="sleeve">Shaft Sleeve</option>
+            <option value="group2">Group 2 Inner Cartridge</option>
+            <option value="diffuser">Diffuser</option>
+            <option value="impeller1st">Impeller 1st Stage</option>
+            <option value="impellern">Impeller N Stage</option>
+            <option value="suction">Suction Guide</option>
+            <option value="stagecasing">Stage Casing</option>
+            <option value="wearimpeller">Wear Ring Impeller</option>
+            <option value="wearcasing">Wear Ring Casing</option>
+            <option value="sleeveinter">Shaft Sleeve Interstage</option>
+            <option value="sleeveseal">Shaft Sleeve Seal</option>
+            <option value="gland">Gland Studs and Nuts</option>
           </select>
         </div>
         <div>
@@ -52,9 +78,13 @@ export default function SceneCanvas() {
         </div>
       </div>
 
-      <Canvas camera={{ position: [2, 2, 3], fov: 60 }}>
+      <Canvas
+        shadows
+        camera={{ position: [0, 0, 20], fov: 45 }}
+        style={{ width: "100%", height: "100%" }}
+      >
         <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} />
+        <directionalLight position={[8, 10, 5]} intensity={1.2} castShadow />
         <Environment preset="studio" />
         {model === 'nuts' ? (
           <NutsAndBoltsModel />
@@ -76,10 +106,46 @@ export default function SceneCanvas() {
           <BaseplateSkidModel wireframe={wireframe} />
         ) : model === 'seal' ? (
           <MechanicalSealCartridgeModel wireframe={wireframe} />
+        ) : model === 'shaft' ? (
+          <group position={[0, 0, 0]}>
+            <PumpShaftModel wireframe={wireframe} />
+          </group>
+        ) : model === 'sleeve' ? (
+          <ShaftSleeveModel wireframe={wireframe} />
+        ) : model === 'group2' ? (
+          <Group2InnerCartridgeModel wireframe={wireframe} />
+        ) : model === 'diffuser' ? (
+          <DiffuserModel wireframe={wireframe} stage={1} />
+        ) : model === 'impeller1st' ? (
+          <Impeller1stStageModel wireframe={wireframe} />
+        ) : model === 'impellern' ? (
+          <ImpellerNStageModel wireframe={wireframe} stage={1} />
+        ) : model === 'suction' ? (
+          <SuctionGuideModel wireframe={wireframe} />
+        ) : model === 'stagecasing' ? (
+          <StageCasingModel wireframe={wireframe} stage={1} />
+        ) : model === 'wearimpeller' ? (
+          <WearRingImpellerModel wireframe={wireframe} index={1} />
+        ) : model === 'wearcasing' ? (
+          <WearRingCasingModel wireframe={wireframe} index={1} />
+        ) : model === 'sleeveinter' ? (
+          <ShaftSleeveInterstageModel wireframe={wireframe} index={1} />
+        ) : model === 'sleeveseal' ? (
+          <ShaftSleeveSealModel wireframe={wireframe} index={1} />
+        ) : model === 'gland' ? (
+          <GlandStudsAndNutsModel />
         ) : (
           <BalanceLeakoffPipeModel wireframe={wireframe} />
         )}
-        <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
+        <OrbitControls
+          enableRotate={true}
+          enablePan={true}
+          enableZoom={true}
+          minDistance={3}
+          maxDistance={40}
+          target={[0, 0, 0]}
+          makeDefault
+        />
       </Canvas>
     </div>
   );

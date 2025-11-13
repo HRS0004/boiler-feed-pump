@@ -1,0 +1,48 @@
+{
+  "name": "PumpShaft",
+  "children": [
+    {
+      "name": "PumpShaft",
+      "geometry": {
+        "type": "BufferGeometry"
+      },
+      "material": {
+        "color": 13421772,
+        "metalness": 0.9,
+        "roughness": 0.2
+      },
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "position": [
+    0,
+    0,
+    0
+  ],
+  "rotation": [
+    0,
+    0,
+    0,
+    "XYZ"
+  ],
+  "scale": [
+    1,
+    1,
+    1
+  ]
+}

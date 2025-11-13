@@ -1,0 +1,609 @@
+{
+  "components": [
+    {
+      "name": "PumpShaft",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ImpellerKey_1",
+      "position": [
+        15,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ShaftSleeve_Seal_1",
+      "position": [
+        30,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Impeller_1stStage",
+      "position": [
+        45,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_1",
+      "position": [
+        60,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Casing_1",
+      "position": [
+        75,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "SuctionGuide",
+      "position": [
+        90,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Diffuser_1",
+      "position": [
+        105,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "StageCasing_1",
+      "position": [
+        120,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ImpellerKey_2",
+      "position": [
+        135,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ShaftSleeve_Interstage_1",
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Impeller_NStage_1",
+      "position": [
+        165,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_2",
+      "position": [
+        180,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Casing_2",
+      "position": [
+        195,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Diffuser_2",
+      "position": [
+        210,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "StageCasing_2",
+      "position": [
+        225,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ImpellerKey_3",
+      "position": [
+        240,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ShaftSleeve_Interstage_2",
+      "position": [
+        255,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Impeller_NStage_2",
+      "position": [
+        270,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_3",
+      "position": [
+        285,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Casing_3",
+      "position": [
+        300,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Diffuser_3",
+      "position": [
+        315,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "StageCasing_3",
+      "position": [
+        330,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ImpellerKey_4",
+      "position": [
+        345,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ShaftSleeve_Interstage_3",
+      "position": [
+        360,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Impeller_NStage_3",
+      "position": [
+        375,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_4",
+      "position": [
+        390,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Casing_4",
+      "position": [
+        405,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Diffuser_4",
+      "position": [
+        420,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "StageCasing_4",
+      "position": [
+        435,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ImpellerKey_5",
+      "position": [
+        450,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ShaftSleeve_Interstage_4",
+      "position": [
+        465,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Impeller_NStage_4",
+      "position": [
+        480,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_5",
+      "position": [
+        495,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Casing_5",
+      "position": [
+        510,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Diffuser_5",
+      "position": [
+        525,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "StageCasing_5",
+      "position": [
+        540,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ImpellerKey_6",
+      "position": [
+        555,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ShaftSleeve_Interstage_5",
+      "position": [
+        570,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Impeller_NStage_5",
+      "position": [
+        585,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_6",
+      "position": [
+        600,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Casing_6",
+      "position": [
+        615,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Diffuser_6",
+      "position": [
+        630,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "StageCasing_6",
+      "position": [
+        645,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ImpellerKey_7",
+      "position": [
+        660,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ShaftSleeve_Interstage_6",
+      "position": [
+        675,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Impeller_NStage_6",
+      "position": [
+        690,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_7",
+      "position": [
+        705,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Casing_7",
+      "position": [
+        720,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Diffuser_7",
+      "position": [
+        735,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "StageCasing_7",
+      "position": [
+        750,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ImpellerKey_8",
+      "position": [
+        765,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ShaftSleeve_Interstage_7",
+      "position": [
+        780,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Impeller_NStage_7",
+      "position": [
+        795,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_8",
+      "position": [
+        810,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Casing_8",
+      "position": [
+        825,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "Diffuser_8",
+      "position": [
+        840,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "StageCasing_8",
+      "position": [
+        855,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_9",
+      "position": [
+        870,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_10",
+      "position": [
+        885,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_11",
+      "position": [
+        900,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_12",
+      "position": [
+        915,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_13",
+      "position": [
+        930,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_14",
+      "position": [
+        945,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_15",
+      "position": [
+        960,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "WearRing_Impeller_16",
+      "position": [
+        975,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    },
+    {
+      "name": "ShaftSleeve_Seal_2",
+      "position": [
+        990,
+        0,
+        0
+      ],
+      "dimensions": "Approximate based on specs"
+    }
+  ],
+  "totalMeshes": 67,
+  "spacing": "150mm (15 units)"
+}
