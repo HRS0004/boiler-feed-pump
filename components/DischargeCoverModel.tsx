@@ -11,106 +11,108 @@ export default function DischargeCoverModel({ wireframe = false }: DischargeCove
 
   // Materials
   const material = new THREE.MeshStandardMaterial({
-    color: 0xcccccc,
-    metalness: 0.8,
-    roughness: 0.2,
+    color: 0x666666, // Cast steel gray
+    metalness: 0.5,
+    roughness: 0.5,
     wireframe,
   });
 
-  const boltMaterial = new THREE.MeshStandardMaterial({
-    color: 0x333333,
-    metalness: 0.9,
-    roughness: 0.1,
-    wireframe,
-  });
-
-  // Dimensions (scaled for visualization)
-  const outerDiameter = 3; // ~300mm scaled
-  const thickness = 0.3; // ~30mm scaled
-  const boltCircleDiameter = 2.5;
+  // Dimensions (mm, scaled to meters for Three.js)
+  const outerDiameter = 0.2; // 200mm
+  const thickness = 0.05; // 50mm
+  const boltCircleDiameter = 0.18; // 180mm
   const numBolts = 8;
-  const shaftDiameter = 0.2;
-  const outletDiameter = 0.4;
-  const outletLength = 0.8;
+  const boltHoleDiameter = 0.016; // 16mm
+  const shaftDiameter = 0.04; // 40mm (assumed for pump shaft)
+  const nozzleOD = 0.0889; // DN80, OD 88.9mm
+  const nozzleLength = 0.1; // 100mm
+  const flangeOD = 0.127; // 127mm for DN80 flange
+  const flangeThickness = 0.02; // 20mm
+  const numFlangeBolts = 8;
+  const flangeBoltHoleDiameter = 0.014; // 14mm
+  const flangeBoltCircleDiameter = 0.11; // 110mm PCD for DN80
+  const ribThickness = 0.01; // 10mm
+  const numRibs = 6;
 
   return (
-    <group ref={groupRef}>
-      {/* Main Flange (flange_section) */}
-      <group name="flange_section">
+    <group ref={groupRef} name="DischargeCover">
+      {/* DischargeCoverBody */}
+      <group name="DischargeCoverBody">
         <mesh material={material}>
           <cylinderGeometry args={[outerDiameter / 2, outerDiameter / 2, thickness, 64]} />
         </mesh>
         {/* Central shaft bore */}
         <mesh position={[0, 0, 0]} material={material}>
-          <cylinderGeometry args={[shaftDiameter / 2, shaftDiameter / 2, thickness + 0.1, 32]} />
+          <cylinderGeometry args={[shaftDiameter / 2, shaftDiameter / 2, thickness + 0.001, 32]} />
+        </mesh>
+        {/* Internal Flow Chamber - curved cavity */}
+        <mesh position={[0, 0, 0]} material={material}>
+          <torusGeometry args={[outerDiameter / 4, outerDiameter / 8, 16, 32, Math.PI]} />
         </mesh>
       </group>
 
-      {/* Bolt Ring (bolt_ring) */}
-      <group name="bolt_ring">
+      {/* BoltHoles */}
+      <group name="BoltHoles">
         {Array.from({ length: numBolts }, (_, i) => {
           const angle = (i / numBolts) * Math.PI * 2;
           const x = Math.cos(angle) * (boltCircleDiameter / 2);
           const z = Math.sin(angle) * (boltCircleDiameter / 2);
           return (
-            <group key={i} position={[x, 0, z]}>
-              {/* Bolt hole */}
-              <mesh material={material}>
-                <cylinderGeometry args={[0.08, 0.08, thickness + 0.1, 16]} />
-              </mesh>
-              {/* Bolt head */}
-              <mesh position={[0, thickness / 2 + 0.05, 0]} material={boltMaterial}>
-                <cylinderGeometry args={[0.1, 0.1, 0.1, 6]} />
-              </mesh>
-            </group>
+            <mesh key={i} position={[x, 0, z]} material={material}>
+              <cylinderGeometry args={[boltHoleDiameter / 2, boltHoleDiameter / 2, thickness + 0.001, 16]} />
+            </mesh>
           );
         })}
       </group>
 
-      {/* Shaft Port (shaft_port) */}
-      <group name="shaft_port">
-        <mesh position={[0, 0, 0]} material={material}>
-          <cylinderGeometry args={[shaftDiameter / 2 + 0.05, shaftDiameter / 2 + 0.05, thickness + 0.1, 32]} />
-        </mesh>
-      </group>
-
-      {/* Gasket Groove (gasket_groove) */}
-      <group name="gasket_groove">
-        <mesh position={[0, -thickness / 2 - 0.02, 0]} material={material}>
-          <ringGeometry args={[outerDiameter / 2 - 0.1, outerDiameter / 2, 64]} />
-        </mesh>
-      </group>
-
-      {/* Outlet Pipe (outlet_pipe) */}
-      <group name="outlet_pipe" position={[outerDiameter / 2 + outletLength / 2, 0, 0]}>
+      {/* DischargeNozzle */}
+      <group name="DischargeNozzle" position={[outerDiameter / 2 + nozzleLength / 2, 0, 0]}>
         <mesh material={material}>
-          <cylinderGeometry args={[outletDiameter / 2, outletDiameter / 2, outletLength, 32]} />
-        </mesh>
-        {/* Bolting face */}
-        <mesh position={[outletLength / 2 + 0.05, 0, 0]} material={material}>
-          <cylinderGeometry args={[outletDiameter / 2 + 0.1, outletDiameter / 2 + 0.1, 0.1, 32]} />
+          <cylinderGeometry args={[nozzleOD / 2, nozzleOD / 2, nozzleLength, 32]} />
         </mesh>
       </group>
 
-      {/* Reinforcement Ribs */}
-      {Array.from({ length: 4 }, (_, i) => {
-        const angle = (i / 4) * Math.PI * 2;
-        return (
-          <mesh
-            key={i}
-            position={[Math.cos(angle) * (outerDiameter / 4), 0, Math.sin(angle) * (outerDiameter / 4)]}
-            rotation={[0, angle, 0]}
-            material={material}
-          >
-            <boxGeometry args={[outerDiameter / 2, thickness, 0.05]} />
-          </mesh>
-        );
-      })}
+      {/* Flange */}
+      <group name="Flange" position={[outerDiameter / 2 + nozzleLength + flangeThickness / 2, 0, 0]}>
+        <mesh material={material}>
+          <cylinderGeometry args={[flangeOD / 2, flangeOD / 2, flangeThickness, 32]} />
+        </mesh>
+        {/* Flange bolt holes */}
+        {Array.from({ length: numFlangeBolts }, (_, i) => {
+          const angle = (i / numFlangeBolts) * Math.PI * 2;
+          const x = Math.cos(angle) * (flangeBoltCircleDiameter / 2);
+          const z = Math.sin(angle) * (flangeBoltCircleDiameter / 2);
+          return (
+            <mesh key={i} position={[x, 0, z]} material={material}>
+              <cylinderGeometry args={[flangeBoltHoleDiameter / 2, flangeBoltHoleDiameter / 2, flangeThickness + 0.001, 16]} />
+            </mesh>
+          );
+        })}
+      </group>
 
-      {/* Engraved Text (simplified as a decal) */}
-      <mesh position={[0, thickness / 2 + 0.01, 0]} material={new THREE.MeshBasicMaterial({ color: 0x000000 })}>
-        <planeGeometry args={[1, 0.2]} />
-      </mesh>
+      {/* SealingGroove */}
+      <group name="SealingGroove">
+        <mesh position={[0, -thickness / 2 - 0.002, 0]} material={material}>
+          <ringGeometry args={[outerDiameter / 2 - 0.01, outerDiameter / 2, 64]} />
+        </mesh>
+      </group>
+
+      {/* ReinforcementRibs */}
+      <group name="ReinforcementRibs">
+        {Array.from({ length: numRibs }, (_, i) => {
+          const angle = (i / numRibs) * Math.PI * 2;
+          return (
+            <mesh
+              key={i}
+              position={[Math.cos(angle) * (outerDiameter / 4), 0, Math.sin(angle) * (outerDiameter / 4)]}
+              rotation={[0, angle, 0]}
+              material={material}
+            >
+              <boxGeometry args={[outerDiameter / 2, thickness, ribThickness]} />
+            </mesh>
+          );
+        })}
+      </group>
     </group>
   );
 }

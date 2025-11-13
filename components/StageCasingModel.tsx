@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import * as THREE from 'three';
 
 interface StageCasingModelProps {
@@ -18,37 +18,94 @@ export default function StageCasingModel({ wireframe = false, stage }: StageCasi
     wireframe,
   });
 
-  // Geometry: Ring with bolt holes
-  // OD 140mm, ID 120mm, length 40mm, 8 bolt holes
+  // Dimensions (mm)
+  const OD = 170;
+  const ID = 120;
+  const thickness = 40;
+  const outerRadius = OD / 2;
+  const innerRadius = ID / 2;
+
+  // Geometry: Thick ring with internal features
   const geometry = useMemo(() => {
     const shape = new THREE.Shape();
-    shape.moveTo(6, 0); // ID 120mm
-    shape.lineTo(7, 0); // OD 140mm
-    shape.lineTo(7, 4); // Length 40mm
-    shape.lineTo(6, 4);
-    shape.lineTo(6, 0);
+    shape.moveTo(innerRadius, 0);
+    shape.lineTo(innerRadius, 5); // Start of locating shoulder
+    shape.lineTo(innerRadius - 10, 5); // Step in for diffuser seat
+    shape.lineTo(innerRadius - 10, 15);
+    shape.quadraticCurveTo(innerRadius - 15, 20, innerRadius - 10, 25); // Smooth curve for flow-cut/scroll
+    shape.lineTo(innerRadius - 10, 35);
+    shape.lineTo(innerRadius, 35);
+    shape.lineTo(innerRadius, thickness);
+    shape.lineTo(outerRadius, thickness);
+    shape.lineTo(outerRadius, 0);
+    shape.lineTo(innerRadius, 0);
 
-    return new THREE.LatheGeometry(shape.getPoints(16), 64);
-  }, []);
+    return new THREE.LatheGeometry(shape.getPoints(32), 64);
+  }, [outerRadius, innerRadius, thickness]);
+
+  // Dowel holes: 3 on outer face
+  const dowelHoles = useMemo(() => {
+    return Array.from({ length: 3 }, (_, i) => {
+      const angle = (i / 3) * Math.PI * 2;
+      return {
+        position: [Math.cos(angle) * outerRadius, Math.sin(angle) * outerRadius, thickness / 2],
+        rotation: [Math.PI / 2, 0, angle],
+      };
+    });
+  }, [outerRadius, thickness]);
+
+  // Bolt holes with bosses: 4
+  const boltHoles = useMemo(() => {
+    return Array.from({ length: 4 }, (_, i) => {
+      const angle = (i / 4) * Math.PI * 2;
+      const bossRadius = 7.5; // 15mm diameter
+      const holeRadius = 4; // 8mm diameter
+      return {
+        bossPosition: [Math.cos(angle) * (outerRadius - 5), Math.sin(angle) * (outerRadius - 5), thickness / 2],
+        holePosition: [Math.cos(angle) * (outerRadius - 5), Math.sin(angle) * (outerRadius - 5), thickness / 2],
+        rotation: [Math.PI / 2, 0, angle],
+        bossRadius,
+        holeRadius,
+      };
+    });
+  }, [outerRadius, thickness]);
 
   return (
     <group ref={groupRef} name={`StageCasing_${stage}`}>
       {/* Main ring */}
       <mesh geometry={geometry} material={material} name={`StageCasing_${stage}_Ring`} rotation={[0, 0, Math.PI / 2]} />
-      {/* Bolt holes */}
-      {Array.from({ length: 8 }, (_, i) => (
+      {/* Dowel holes */}
+      {dowelHoles.map((hole, i) => (
         <mesh
-          key={i}
-          position={[
-            Math.cos((i / 8) * Math.PI * 2) * 6.5, // Position at OD
-            Math.sin((i / 8) * Math.PI * 2) * 6.5,
-            0,
-          ]}
+          key={`dowel_${i}`}
+          position={hole.position as [number, number, number]}
+          rotation={hole.rotation as [number, number, number]}
           material={material}
-          name={`StageCasing_${stage}_BoltHole_${i + 1}`}
+          name={`StageCasing_${stage}_DowelHole_${i + 1}`}
         >
-          <cylinderGeometry args={[0.3, 0.3, 4, 16]} /> {/* Hole diameter 6mm, length 40mm */}
+          <cylinderGeometry args={[2.5, 2.5, 10, 16]} /> {/* Diameter 5mm, depth 10mm */}
         </mesh>
+      ))}
+      {/* Bolt bosses and holes */}
+      {boltHoles.map((bolt, i) => (
+        <group key={`bolt_${i}`}>
+          <mesh
+            position={bolt.bossPosition as [number, number, number]}
+            rotation={bolt.rotation as [number, number, number]}
+            material={material}
+            name={`StageCasing_${stage}_BoltBoss_${i + 1}`}
+          >
+            <cylinderGeometry args={[bolt.bossRadius, bolt.bossRadius, 5, 16]} /> {/* Boss height 5mm */}
+          </mesh>
+          <mesh
+            position={bolt.holePosition as [number, number, number]}
+            rotation={bolt.rotation as [number, number, number]}
+            material={material}
+            name={`StageCasing_${stage}_BoltHole_${i + 1}`}
+          >
+            <cylinderGeometry args={[bolt.holeRadius, bolt.holeRadius, thickness, 16]} /> {/* Hole through thickness */}
+          </mesh>
+        </group>
       ))}
     </group>
   );

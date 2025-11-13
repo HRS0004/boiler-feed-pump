@@ -26,10 +26,12 @@ import WearRingCasingModel from './WearRingCasingModel';
 import ShaftSleeveInterstageModel from './ShaftSleeveInterstageModel';
 import ShaftSleeveSealModel from './ShaftSleeveSealModel';
 import GlandStudsAndNutsModel from './GlandStudsAndNutsModel';
+import FullFeedPumpAssembly from './FullFeedPumpAssembly';
 
 export default function SceneCanvas() {
-  const [model, setModel] = useState<'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'stagecasing' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland'>('group2');
+  const [model, setModel] = useState<'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'stagecasing' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland' | 'fullassembly'>('fullassembly');
   const [wireframe, setWireframe] = useState(false);
+  const [exploded, setExploded] = useState(false);
 
   return (
     <div className="w-screen h-screen bg-black relative">
@@ -39,7 +41,7 @@ export default function SceneCanvas() {
           <label className="text-white mr-2">Model:</label>
           <select
             value={model}
-            onChange={(e) => setModel(e.target.value as 'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'stagecasing' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland')}
+            onChange={(e) => setModel(e.target.value as 'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'stagecasing' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland' | 'fullassembly')}
             className="bg-gray-700 text-white"
           >
             <option value="nuts">Nuts and Bolts</option>
@@ -66,9 +68,10 @@ export default function SceneCanvas() {
             <option value="sleeveinter">Shaft Sleeve Interstage</option>
             <option value="sleeveseal">Shaft Sleeve Seal</option>
             <option value="gland">Gland Studs and Nuts</option>
+            <option value="fullassembly">Full Feed Pump Assembly</option>
           </select>
         </div>
-        <div>
+        <div className="mb-2">
           <label className="text-white mr-2">Wireframe:</label>
           <input
             type="checkbox"
@@ -76,11 +79,21 @@ export default function SceneCanvas() {
             onChange={(e) => setWireframe(e.target.checked)}
           />
         </div>
+        {model === 'fullassembly' && (
+          <div>
+            <label className="text-white mr-2">Exploded View:</label>
+            <input
+              type="checkbox"
+              checked={exploded}
+              onChange={(e) => setExploded(e.target.checked)}
+            />
+          </div>
+        )}
       </div>
 
       <Canvas
         shadows
-        camera={{ position: [0, 0, 20], fov: 45 }}
+        camera={{ position: [0, 0, model === 'fullassembly' ? 400 : 100], fov: 45 }}
         style={{ width: "100%", height: "100%" }}
       >
         <ambientLight intensity={0.5} />
@@ -134,6 +147,8 @@ export default function SceneCanvas() {
           <ShaftSleeveSealModel wireframe={wireframe} index={1} />
         ) : model === 'gland' ? (
           <GlandStudsAndNutsModel />
+        ) : model === 'fullassembly' ? (
+          <FullFeedPumpAssembly wireframe={wireframe} exploded={exploded} />
         ) : (
           <BalanceLeakoffPipeModel wireframe={wireframe} />
         )}
@@ -141,8 +156,8 @@ export default function SceneCanvas() {
           enableRotate={true}
           enablePan={true}
           enableZoom={true}
-          minDistance={3}
-          maxDistance={40}
+          minDistance={10}
+          maxDistance={200}
           target={[0, 0, 0]}
           makeDefault
         />

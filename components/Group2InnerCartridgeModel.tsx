@@ -20,8 +20,8 @@ interface Group2InnerCartridgeModelProps {
 export default function Group2InnerCartridgeModel({ wireframe = false }: Group2InnerCartridgeModelProps) {
   const groupRef = useRef<THREE.Group>(null);
 
-  // Spacing: 0.01mm = 0.001 unit (1 unit = 10mm)
-  const spacing = 0.001;
+  // Spacing: 150mm = 15 units (1 unit = 10mm)
+  const spacing = 15;
 
   // Positions along X-axis, starting at X=0 for PumpShaft
   const positions = [
