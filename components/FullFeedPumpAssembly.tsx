@@ -2,7 +2,7 @@
 import { useRef } from 'react';
 import * as THREE from 'three';
 import SuctionGuideModel from './SuctionGuideModel';
-import StageCasingModel from './StageCasingModel';
+
 import DiffuserModel from './DiffuserModel';
 import Impeller1stStageModel from './Impeller1stStageModel';
 import ImpellerNStageModel from './ImpellerNStageModel';
@@ -55,12 +55,7 @@ export default function FullFeedPumpAssembly({ wireframe = false, exploded = fal
         <SuctionGuideModel wireframe={wireframe} />
       </group>
 
-      {/* Stage Casings (8) */}
-      {Array.from({ length: 8 }, (_, i) => (
-        <group key={`StageCasing_${i + 1}`} position={[positions.stages[i], 0, 0]} name={`StageCasing_${i + 1}`}>
-          <StageCasingModel wireframe={wireframe} stage={i + 1} />
-        </group>
-      ))}
+
 
       {/* Discharge Casing */}
       <group position={[positions.discharge, 0, 0]} name="DischargeCasing">

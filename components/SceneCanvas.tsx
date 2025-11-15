@@ -20,7 +20,7 @@ import DiffuserModel from './DiffuserModel';
 import Impeller1stStageModel from './Impeller1stStageModel';
 import ImpellerNStageModel from './ImpellerNStageModel';
 import SuctionGuideModel from './SuctionGuideModel';
-import StageCasingModel from './StageCasingModel';
+
 import WearRingImpellerModel from './WearRingImpellerModel';
 import WearRingCasingModel from './WearRingCasingModel';
 import ShaftSleeveInterstageModel from './ShaftSleeveInterstageModel';
@@ -29,7 +29,7 @@ import GlandStudsAndNutsModel from './GlandStudsAndNutsModel';
 import FullFeedPumpAssembly from './FullFeedPumpAssembly';
 
 export default function SceneCanvas() {
-  const [model, setModel] = useState<'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'stagecasing' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland' | 'fullassembly'>('fullassembly');
+  const [model, setModel] = useState<'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland' | 'fullassembly'>('fullassembly');
   const [wireframe, setWireframe] = useState(false);
   const [exploded, setExploded] = useState(false);
 
@@ -41,7 +41,7 @@ export default function SceneCanvas() {
           <label className="text-white mr-2">Model:</label>
           <select
             value={model}
-            onChange={(e) => setModel(e.target.value as 'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'stagecasing' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland' | 'fullassembly')}
+            onChange={(e) => setModel(e.target.value as 'nuts' | 'pump' | 'cover' | 'key' | 'guard' | 'pipe' | 'collar' | 'bush' | 'skid' | 'baseplate' | 'seal' | 'shaft' | 'sleeve' | 'group2' | 'diffuser' | 'impeller1st' | 'impellern' | 'suction' | 'wearimpeller' | 'wearcasing' | 'sleeveinter' | 'sleeveseal' | 'gland' | 'fullassembly')}
             className="bg-gray-700 text-white"
           >
             <option value="nuts">Nuts and Bolts</option>
@@ -62,7 +62,7 @@ export default function SceneCanvas() {
             <option value="impeller1st">Impeller 1st Stage</option>
             <option value="impellern">Impeller N Stage</option>
             <option value="suction">Suction Guide</option>
-            <option value="stagecasing">Stage Casing</option>
+
             <option value="wearimpeller">Wear Ring Impeller</option>
             <option value="wearcasing">Wear Ring Casing</option>
             <option value="sleeveinter">Shaft Sleeve Interstage</option>
@@ -135,8 +135,6 @@ export default function SceneCanvas() {
           <ImpellerNStageModel wireframe={wireframe} stage={1} />
         ) : model === 'suction' ? (
           <SuctionGuideModel wireframe={wireframe} />
-        ) : model === 'stagecasing' ? (
-          <StageCasingModel wireframe={wireframe} stage={1} />
         ) : model === 'wearimpeller' ? (
           <WearRingImpellerModel wireframe={wireframe} index={1} />
         ) : model === 'wearcasing' ? (

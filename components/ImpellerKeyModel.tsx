@@ -18,11 +18,10 @@ export default function ImpellerKeyModel({ wireframe = false, index = 1 }: Impel
     wireframe,
   });
 
-  // Approximate dimensions (scaled, e.g., 1 unit = 10mm)
-  const length = 3.0; // 30mm along X-axis
+  // Dimensions: 8mm × 3.5mm (scaled: 1 unit = 10mm)
+  const length = 3.0; // 30mm along X-axis (arbitrary length for key)
   const width = 0.8; // 8mm along Z-axis
-  const height = 0.5; // 5mm along Y-axis
-  const chamfer = 0.03; // ~0.3mm chamfer
+  const height = 0.35; // 3.5mm along Y-axis
 
   return (
     <group ref={groupRef} name={`ImpellerKey_${index}`}>

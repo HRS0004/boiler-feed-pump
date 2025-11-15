@@ -21,76 +21,51 @@ export default function PumpShaftModel({ wireframe = false }: PumpShaftModelProp
   // Scaling: 1 unit = 10mm
   const shaftGeometry = useMemo(() => {
     // Define shaft profile points (half-profile for LatheGeometry)
+    // Total length: 860 mm (86 units)
     const points = [
-      // Segment A: Coupling End (leftmost, chamfered)
-      new THREE.Vector2(0, -200), // Bottom
-      new THREE.Vector2(22.5, -200), // Chamfer start
-      new THREE.Vector2(22.5, -190), // Coupling diameter 45mm
-      new THREE.Vector2(22.5, -70), // End of coupling
+      // Segment A: Base diameter 48mm (4.8 units), length portion
+      new THREE.Vector2(0, -430), // Bottom
+      new THREE.Vector2(2.4, -430), // Chamfer start
+      new THREE.Vector2(2.4, -425), // Smooth chamfer
+      new THREE.Vector2(2.4, -200), // Base section
 
-      // Transition to Segment B with fillet (2mm radius)
-      new THREE.Vector2(22.5, -68), // Start fillet
-      new THREE.Vector2(27.5, -68), // Fillet arc (approx)
-      new THREE.Vector2(27.5, -66), // End fillet
+      // Step down to 42mm (4.2 units)
+      new THREE.Vector2(2.4, -198),
+      new THREE.Vector2(2.1, -198),
+      new THREE.Vector2(2.1, -196),
 
-      // Segment B: First Step (diameter 55mm)
-      new THREE.Vector2(27.5, -66),
-      new THREE.Vector2(27.5, 54), // Length 120mm
+      new THREE.Vector2(2.1, -100), // Transition section
 
-      // Transition to Segment C with fillet
-      new THREE.Vector2(27.5, 56),
-      new THREE.Vector2(30, 56),
-      new THREE.Vector2(30, 58),
+      // Step down to 38mm (3.8 units)
+      new THREE.Vector2(2.1, -98),
+      new THREE.Vector2(1.9, -98),
+      new THREE.Vector2(1.9, -96),
 
-      // Segment C: Impeller Seat (diameter 60mm, mirror-polished)
-      new THREE.Vector2(30, 58),
-      new THREE.Vector2(30, 98), // Length 40mm
+      new THREE.Vector2(1.9, 0), // Middle section
 
-      // Transition to Segment D with fillet
-      new THREE.Vector2(30, 100),
-      new THREE.Vector2(26, 100),
-      new THREE.Vector2(26, 102),
+      // Step down to 32mm (3.2 units)
+      new THREE.Vector2(1.9, 2),
+      new THREE.Vector2(1.6, 2),
+      new THREE.Vector2(1.6, 4),
 
-      // Segment D: Seal Sleeve Region (diameter 52mm, very smooth)
-      new THREE.Vector2(26, 102),
-      new THREE.Vector2(26, 172), // Length 70mm
+      new THREE.Vector2(1.6, 200), // Seal area
 
-      // Transition to Segment E with fillet
-      new THREE.Vector2(26, 174),
-      new THREE.Vector2(40, 174),
-      new THREE.Vector2(40, 176),
+      // Step down to 28mm (2.8 units)
+      new THREE.Vector2(1.6, 202),
+      new THREE.Vector2(1.4, 202),
+      new THREE.Vector2(1.4, 204),
 
-      // Segment E: Balancing Drum Seat (diameter 80mm, thickest)
-      new THREE.Vector2(40, 176),
-      new THREE.Vector2(40, 226), // Length 50mm
-
-      // Transition to Segment F with fillet
-      new THREE.Vector2(40, 228),
-      new THREE.Vector2(25, 228),
-      new THREE.Vector2(25, 230),
-
-      // Segment F: Bearing Seat (diameter 50mm)
-      new THREE.Vector2(25, 230),
-      new THREE.Vector2(25, 330), // Length 100mm
-
-      // Transition to Segment G with fillet
-      new THREE.Vector2(25, 332),
-      new THREE.Vector2(20, 332),
-      new THREE.Vector2(20, 334),
-
-      // Segment G: Tail End (diameter 40mm, chamfered)
-      new THREE.Vector2(20, 334),
-      new THREE.Vector2(20, 390), // Length 60mm
-      new THREE.Vector2(19, 392), // Chamfer
-      new THREE.Vector2(0, 392), // Top
+      new THREE.Vector2(1.4, 430), // End section
+      new THREE.Vector2(1.3, 432), // Chamfer
+      new THREE.Vector2(0, 432), // Top
     ];
 
     // Create LatheGeometry for shaft body
     const latheGeometry = new THREE.LatheGeometry(points, 64);
 
-    // Create keyway cut: BoxGeometry positioned on top of impeller seat (Segment C)
-    const keywayGeometry = new THREE.BoxGeometry(40, 3, 8); // Length 40mm, depth 3mm, width 8mm
-    keywayGeometry.translate(0, 78, 0); // Center on impeller seat (Y=78 approx)
+    // Create keyway cut for mechanical seal area: 6mm width, 3mm depth at 32mm diameter section
+    const keywayGeometry = new THREE.BoxGeometry(60, 3, 6); // Length 60mm, depth 3mm, width 6mm
+    keywayGeometry.translate(0, 200, 0); // Position at seal area (Y=200 approx, 32mm section)
 
     // Create meshes for CSG
     const shaftMesh = new THREE.Mesh(latheGeometry);
